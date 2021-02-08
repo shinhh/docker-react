@@ -1,0 +1,13 @@
+sudo: required
+services:
+  - docker
+
+
+before_install:
+  - docker build -t shinhh/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true shinhh/docker-react npm run test -- --coverag
+  
+script:
+  - docker run shinhh/docker-react npm run test -- --coverage
